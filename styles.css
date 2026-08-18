@@ -932,7 +932,7 @@ h2.light { color: var(--white); }
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(4, 1fr);
   gap: 2px;
-  opacity: 0.35;
+  opacity: 0.5;
 }
 
 .cta-collage img {
