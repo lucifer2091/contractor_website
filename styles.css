@@ -974,7 +974,7 @@ h2.light { color: var(--white); }
   color: var(--black);
 }
 
-/* Responsive — Tablet */
+/* Responsive â€” Tablet */
 @media (max-width: 1024px) {
   .container { padding: 0 20px; }
 
@@ -988,7 +988,7 @@ h2.light { color: var(--white); }
   .testimonials__wrapper { gap: 16px; }
 }
 
-/* Responsive — Tablet Portrait / Large Phone */
+/* Responsive â€” Tablet Portrait / Large Phone */
 @media (max-width: 768px) {
   /* Nav */
   .nav__links {
@@ -1056,7 +1056,7 @@ h2.light { color: var(--white); }
   .footer__inner { flex-direction: column; gap: 16px; text-align: center; }
 }
 
-/* Responsive — Small Phone */
+/* Responsive â€” Small Phone */
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
 
