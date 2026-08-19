@@ -221,7 +221,7 @@ img { max-width: 100%; height: auto; display: block; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('images/photo-1.jpg');
+  background-image: url('images/hero-bg.png');
   background-size: cover;
   background-position: center;
   animation: heroZoom 20s ease-in-out infinite alternate;
