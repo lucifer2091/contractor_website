@@ -1,4 +1,4 @@
-/* Reset */
+﻿/* Reset */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -221,7 +221,7 @@ img { max-width: 100%; height: auto; display: block; }
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('images/hero-bg.png');
+  background-image: url('images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   animation: heroZoom 20s ease-in-out infinite alternate;
@@ -1055,7 +1055,7 @@ h2.light { color: var(--white); }
   color: var(--black);
 }
 
-/* Responsive — Tablet */
+/* Responsive â€” Tablet */
 @media (max-width: 1024px) {
   .container { padding: 0 20px; }
 
@@ -1069,7 +1069,7 @@ h2.light { color: var(--white); }
   .testimonials__wrapper { gap: 16px; }
 }
 
-/* Responsive — Tablet Portrait / Large Phone */
+/* Responsive â€” Tablet Portrait / Large Phone */
 @media (max-width: 768px) {
   /* Nav */
   .nav__links {
@@ -1140,7 +1140,7 @@ h2.light { color: var(--white); }
   .footer__inner { flex-direction: column; gap: 16px; text-align: center; }
 }
 
-/* Responsive — Small Phone */
+/* Responsive â€” Small Phone */
 @media (max-width: 480px) {
   .container { padding: 0 16px; }
 
