@@ -10,7 +10,7 @@ No git CLI or terminal auth available. All pushes use the GitHub REST API with a
 - Auth header: `Authorization: token <PAT>`
 - Content must be base64-encoded JSON with `message`, `content`, and `sha` (for updates)
 - Repo: `lucifer2091/contractor_website`
-- Live: https://lucifer2091.github.io/contractor_website/
+- Live: https://khanreno.ca
 
 ## Critical gotchas
 
