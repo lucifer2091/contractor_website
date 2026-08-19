@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lucifer2091.github.io/contractor_website/sitemap.xml
