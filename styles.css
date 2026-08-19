@@ -608,7 +608,25 @@ h2.light { color: var(--white); }
 
 .gallery__item--wide { grid-column: span 2; }
 .gallery__item--wide img { aspect-ratio: 16/9; }
+.gallery__item--group { grid-column: span 2; padding: 0; }
 .gallery__item:hover img { transform: scale(1.02); }
+
+.gallery__group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+}
+
+.gallery__group-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s ease;
+}
+
+.gallery__group-grid img:hover { transform: scale(1.03); }
 
 .gallery__caption {
   position: absolute;
@@ -1088,6 +1106,7 @@ h2.light { color: var(--white); }
   /* Gallery */
   .gallery { grid-template-columns: repeat(2, 1fr); }
   .gallery__item--wide { grid-column: span 2; }
+  .gallery__item--group { grid-column: span 2; }
   .gallery__caption { opacity: 1; transform: translateY(0); }
 
   /* Testimonials */
@@ -1144,6 +1163,8 @@ h2.light { color: var(--white); }
 
   .gallery { grid-template-columns: 1fr; gap: 6px; }
   .gallery__item--wide { grid-column: span 1; }
+  .gallery__item--group { grid-column: span 1; }
+  .gallery__group-grid { grid-template-columns: 1fr 1fr; }
   .gallery__item img { aspect-ratio: 3/2; }
   .gallery__item--wide img { aspect-ratio: 3/2; }
 
