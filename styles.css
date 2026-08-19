@@ -628,6 +628,15 @@ h2.light { color: var(--white); }
 
 .gallery__group-grid img:hover { transform: scale(1.03); }
 
+.gallery__group-grid--3 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.gallery__group-grid--3 img:first-child {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
+
 .gallery__caption {
   position: absolute;
   bottom: 0;
