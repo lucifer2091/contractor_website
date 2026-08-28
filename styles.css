@@ -766,18 +766,21 @@ h2.light { color: var(--white); }
 }
 
 .testimonial {
-  display: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
   text-align: center;
+  will-change: opacity, transform;
 }
 
 .testimonial.active {
-  display: block;
-  animation: testimonialIn 0.6s ease;
-}
-
-@keyframes testimonialIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  position: relative;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 .testimonial__stars {
