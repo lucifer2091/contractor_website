@@ -6,9 +6,8 @@ Static single-page website for Khan Reno Inc (solo general contractor). No build
 
 ## Deployment
 
-No git CLI or terminal auth available. All pushes use the GitHub REST API with a PAT:
-- Auth header: `Authorization: token <PAT>`
-- Content must be base64-encoded JSON with `message`, `content`, and `sha` (for updates)
+Local git clone at `C:\Users\kbbo\Downloads\_repo` (remote `origin` = `lucifer2091/contractor_website`).
+- Make changes locally, then `git add`, `git commit`, `git push` — uses Windows Credential Manager (`lucifer2091`), no PAT needed in chat.
 - Repo: `lucifer2091/contractor_website`
 - Live: https://khanreno.ca
 
@@ -26,7 +25,7 @@ $bitmap.Dispose(); $img.Dispose()
 Verify output is real JPG: first 2 bytes must be `FF D8`.
 
 ### UTF-8 encoding
-Use `[System.IO.File]::ReadAllBytes()` + `[System.Convert]::ToBase64String()` for GitHub API uploads. `Get-Content -Encoding UTF8` mangles em dashes and special chars.
+`index.html` contains em dashes (`—`). Avoid `Get-Content` without `-Encoding UTF8`; prefer `[System.IO.File]::ReadAllText()` / `WriteAllText()` with UTF8NoBOM, or ensure PowerShell handles UTF-8 correctly. Double-encoded `â€"` means file was saved with wrong encoding.
 
 ## File structure
 
