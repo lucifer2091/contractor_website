@@ -1111,7 +1111,7 @@ h2.light { color: var(--white); }
   }
   .nav__links.open { display: flex; }
   .nav__links a { font-size: 1.1rem; }
-  .nav__toggle { display: flex; }
+  .nav__toggle { display: flex; position: relative; z-index: 201; }
 
   /* Hero */
   .hero { min-height: 85vh; }
