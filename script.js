@@ -103,20 +103,43 @@
   }
   resetAuto();
 
-  // Scroll reveal (reversible on scroll up/down)
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      } else {
-        entry.target.classList.remove('visible');
-      }
-    });
-  }, { threshold: 0.15 });
+  // Scroll-scrubbed reveal: animation progress follows scroll position
+  const scrubEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-up');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
-    observer.observe(el);
-  });
+  function scrubReveal() {
+    const vh = window.innerHeight;
+    const start = vh;      // element top at viewport bottom
+    const end = vh * 0.55; // fully revealed just above middle
+    scrubEls.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      const m = /stagger-(\d)/.exec(el.className);
+      const lag = m ? parseInt(m[1], 10) * 0.06 : 0;
+      let p = (start - top) / (start - end);
+      p = Math.max(0, Math.min(1, (p - lag) / (1 - lag)));
+      const e = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      let x = 0, y = 40 * (1 - e), s = 0.98 + 0.02 * e;
+      if (el.classList.contains('reveal-left')) { x = -60 * (1 - e); y = 0; }
+      else if (el.classList.contains('reveal-right')) { x = 60 * (1 - e); y = 0; }
+      else if (el.classList.contains('reveal-up')) { y = 60 * (1 - e); s = 1; }
+      el.style.opacity = e.toFixed(3);
+      el.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px) scale(' + s.toFixed(4) + ')';
+    });
+  }
+
+  if (reduceMotion) {
+    scrubEls.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  } else {
+    document.body.classList.add('scrub');
+    scrubEls.forEach(el => el.classList.remove('visible'));
+    let ticking = false;
+    const requestScrub = () => {
+      if (!ticking) { ticking = true; requestAnimationFrame(() => { scrubReveal(); ticking = false; }); }
+    };
+    window.addEventListener('scroll', requestScrub, { passive: true });
+    window.addEventListener('resize', requestScrub);
+    scrubReveal();
+  }
 
   // mailto: with Gmail fallback (no mail client configured)
   document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
