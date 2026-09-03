@@ -29,6 +29,32 @@
     });
   });
 
+  // Service Areas dropdown (touch support + close on outside click / Escape)
+  document.querySelectorAll('.nav__dropdown').forEach(drop => {
+    const btn = drop.querySelector('.nav__dropbtn');
+    btn?.addEventListener('click', e => {
+      e.stopPropagation();
+      const open = drop.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.nav__dropdown.open').forEach(drop => {
+      drop.classList.remove('open');
+      drop.querySelector('.nav__dropbtn')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.nav__dropdown.open').forEach(drop => {
+        drop.classList.remove('open');
+        drop.querySelector('.nav__dropbtn')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
   // Nav hide/show on scroll
   let lastScroll = 0;
   const nav = document.getElementById('nav');
