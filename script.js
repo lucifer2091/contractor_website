@@ -52,6 +52,7 @@
   let autoInterval;
 
   function goTo(index) {
+    if (!testimonials.length) return;
     testimonials[current].classList.remove('active');
     dots[current]?.classList.remove('active');
     current = (index + testimonials.length) % testimonials.length;
@@ -70,6 +71,7 @@
   });
 
   function resetAuto() {
+    if (!testimonials.length) return;
     clearInterval(autoInterval);
     autoInterval = setInterval(() => goTo(current + 1), 5000);
   }
