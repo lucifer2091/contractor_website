@@ -225,7 +225,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__dropdown.open .nav__dropbtn::after { transform: rotate(-135deg); }
 
 .nav__menu {
-  display: none;
+  display: flex;
   position: absolute;
   top: calc(100% + 12px);
   right: 0;
@@ -237,11 +237,24 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 8px;
   flex-direction: column;
   z-index: 300;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.nav__menu::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 12px;
 }
 
 .nav__dropdown:hover .nav__menu,
 .nav__dropdown:focus-within .nav__menu,
-.nav__dropdown.open .nav__menu { display: flex; }
+.nav__dropdown.open .nav__menu { opacity: 1; visibility: visible; transform: none; }
 
 .nav__menu a {
   padding: 9px 12px;
