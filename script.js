@@ -92,6 +92,26 @@
     observer.observe(el);
   });
 
+  // mailto: with Gmail fallback (no mail client configured)
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const mailto = link.getAttribute('href');
+      const match = /^mailto:([^?]+)(?:\?subject=(.*))?$/.exec(mailto);
+      const gmail = 'https://mail.google.com/mail/?view=cm&fs=1&to='
+        + encodeURIComponent(match[1])
+        + (match[2] ? '&su=' + encodeURIComponent(decodeURIComponent(match[2])) : '');
+      let opened = false;
+      const onBlur = () => { opened = true; window.removeEventListener('blur', onBlur); };
+      window.addEventListener('blur', onBlur);
+      window.location.href = mailto;
+      setTimeout(() => {
+        window.removeEventListener('blur', onBlur);
+        if (!opened) window.open(gmail, '_blank', 'noopener');
+      }, 800);
+    });
+  });
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
